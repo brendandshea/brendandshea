@@ -157,24 +157,41 @@ a { color: inherit; }
   width: 100%;
   height: 100%;
   opacity: 0.35;
-  z-index: 1;
+  z-index: 2;
 }
 .hero .wrap {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
-/* hero with a photographic background */
-.hero.has-photo {
-  background-size: cover;
-  background-position: center;
+/* hero with a photographic background — real <img>, never tiles, position is tunable */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  display: block;
 }
 .hero.has-photo::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(160deg, rgba(10, 30, 44, 0.55) 0%, rgba(10, 30, 44, 0.92) 100%);
+  background: linear-gradient(160deg, rgba(10, 30, 44, 0.35) 0%, rgba(10, 30, 44, 0.82) 100%);
+}
+
+/* translucent panel behind hero text / button so it never gets lost in a busy photo */
+.hero-panel {
+  display: inline-block;
+  background: rgba(10, 30, 44, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: var(--space-3) var(--space-4);
+  max-width: 100%;
 }
 .eyebrow {
   font-family: var(--font-mono);
@@ -226,8 +243,11 @@ a { color: inherit; }
 .btn-ghost {
   border-color: var(--line-dark);
   color: var(--text-light);
+  background: rgba(10, 30, 44, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
-.btn-ghost:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+.btn-ghost:hover { border-color: var(--accent-teal); color: var(--accent-teal); background: rgba(10, 30, 44, 0.65); }
 
 /* animated tag-track path drawn across hero */
 .track-path {
@@ -321,6 +341,23 @@ section.tight { padding: var(--space-5) 0; }
   border: 1px solid var(--line);
 }
 
+/* denser bento-style mosaic variant — packs more photos into less vertical space */
+.photo-grid.mosaic {
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-auto-rows: 120px;
+  grid-auto-flow: dense;
+}
+.photo-grid.mosaic img {
+  height: 100%;
+}
+.photo-grid.mosaic img.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+@media (max-width: 480px) {
+  .photo-grid.mosaic { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); grid-auto-rows: 90px; }
+}
+
 /* ---------- Inline banner photo (used within content blocks) ---------- */
 .content-photo {
   width: 100%;
@@ -360,6 +397,20 @@ section.tight { padding: var(--space-5) 0; }
   margin: 0.5em 0 0.4em;
 }
 .focus-card p { color: var(--text-muted); margin: 0; font-size: 0.94rem; }
+
+/* ---------- Slim full-bleed photo banner (section divider) ---------- */
+.section-banner {
+  width: 100%;
+  height: clamp(140px, 22vw, 260px);
+  overflow: hidden;
+}
+.section-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
 
 /* ---------- Stats strip ---------- */
 .stats-strip {
