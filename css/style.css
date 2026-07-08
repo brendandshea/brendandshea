@@ -183,7 +183,7 @@ a { color: inherit; }
 @media (max-width: 720px) {
   /* on narrow screens the crop window is horizontal (not vertical), so shift
      left toward the shark's head instead of centering on the people/text area */
-  .hero-photo { object-position: 15% top; }
+  .hero-photo { object-position: 0% top; }
 }
 .hero.has-photo::before {
   content: "";
