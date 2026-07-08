@@ -176,9 +176,14 @@ a { color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
   z-index: 0;
   display: block;
+}
+@media (max-width: 720px) {
+  /* on narrow screens the crop window is horizontal (not vertical), so shift
+     left toward the shark's head instead of centering on the people/text area */
+  .hero-photo { object-position: 15% top; }
 }
 .hero.has-photo::before {
   content: "";
@@ -410,6 +415,8 @@ section.tight { padding: var(--space-5) 0; }
 /* ---------- Slim full-bleed photo banner (section divider) ---------- */
 .section-banner {
   width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
   height: clamp(140px, 22vw, 260px);
   overflow: hidden;
 }
