@@ -324,6 +324,9 @@ section.tight { padding: var(--space-5) 0; }
   overflow: hidden;
   border: 1px solid var(--line);
   aspect-ratio: 4 / 5;
+  /* forces its own compositing layer so it isn't blurred when the ancestor
+     .reveal section animates its transform on scroll-in (Chrome/Safari quirk) */
+  transform: translateZ(0);
 }
 .about-photo img {
   width: 100%;
@@ -350,6 +353,7 @@ section.tight { padding: var(--space-5) 0; }
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid var(--line);
+  transform: translateZ(0);
 }
 
 /* denser bento-style mosaic variant — packs more photos into less vertical space */
@@ -377,6 +381,7 @@ section.tight { padding: var(--space-5) 0; }
   border-radius: 14px;
   border: 1px solid var(--line);
   margin: var(--space-4) 0;
+  transform: translateZ(0);
 }
 
 /* ---------- Focus cards ---------- */
@@ -419,6 +424,7 @@ section.tight { padding: var(--space-5) 0; }
   margin: 0 auto;
   height: clamp(140px, 22vw, 260px);
   overflow: hidden;
+  transform: translateZ(0);
 }
 .section-banner img {
   width: 100%;
@@ -509,6 +515,7 @@ section.tight { padding: var(--space-5) 0; }
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.media-card .thumb { transform: translateZ(0); }
 .media-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(22,35,43,0.08); }
 .media-card .thumb {
   aspect-ratio: 16/9;
