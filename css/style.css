@@ -151,7 +151,7 @@ a { color: inherit; }
   overflow: hidden;
   padding: var(--space-6) 0 var(--space-5);
 }
-.hero.has-photo {
+.hero.has-photo.hero-tall {
   min-height: 620px;
   padding-top: var(--space-3);
   padding-bottom: var(--space-6);
