@@ -188,6 +188,13 @@ a { color: inherit; }
      left toward the shark's head instead of centering on the people/text area */
   .hero-photo { object-position: 0% top; }
 }
+
+/* publications header: reef shark sits low in the frame, so anchor the crop
+   to the bottom of the photo (not the default top) to keep it in view */
+.hero-photo.hero-photo--pubs { object-position: center bottom; }
+@media (max-width: 720px) {
+  .hero-photo.hero-photo--pubs { object-position: 40% bottom; }
+}
 .hero.has-photo::before {
   content: "";
   position: absolute;
